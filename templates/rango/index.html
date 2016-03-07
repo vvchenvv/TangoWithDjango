@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Index{% endblock %}
+
+        {% block body_block %}
+{% if user.is_authenticated %}
+    <div class="page-header">
+
+                <h1>Rango says... hello {{ user.username }}!</h1>
+            {% else %}
+                <h1>Rango says... hello world!</h1>
+            {% endif %}
+</div>
+
+         <div class="panel panel-primary">
+            <div class="panel-heading">
+            <h3 class="panel-title">Categories</h3>
+
+              {% if categories %}
+                    <ul class="list-group">
+                        {% for category in categories %}
+                         <li class="list-group-item"><a href="{% url 'category'  category.slug %}">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <strong>There are no categories present.</strong>
+                {% endif %}
+
+            </div>
+         </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Pages</h3>
+
+                {% if pages %}
+                    <ul class="list-group">
+                        {% for page in pages %}
+                         <li class="list-group-item"><a href="{{page.url}}">{{ page.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <strong>There are no categories present.</strong>
+                {% endif %}
+            </div>
+
+          </div>
+
+
+       <p> visits: {{ visits }}</p>
+        {% endblock %}
+
+<!--{% load staticfiles %} &lt;!&ndash; New line &ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+
+    <!--<head>-->
+        <!--<title>Rango</title>-->
+    <!--</head>-->
+
+    <!--<body>-->
+        <!--{% if user.is_authenticated %}-->
+        <!--<h1>Rango says... hello {{ user.username }}!</h1>-->
+        <!--{% else %}-->
+        <!--<h1>Rango says... hello Nobady!</h1>-->
+        <!--{% endif %}-->
+        <!--hello world! <strong>{{ boldmessage }}</strong><br />-->
+        <!--<li>{{ normalmessage }}</li>-->
+        <!--{% if categories %}-->
+            <!--<ul>-->
+                <!--{% for category in categories %}-->
+                <!--<li><a href="/Trango/category/{{ category.slug }}">{{ category.name }}</a></li>-->
+                <!--{% endfor %}-->
+            <!--</ul>-->
+        <!--{% else %}-->
+            <!--<strong>There are no categories present.</strong>-->
+        <!--{% endif %}-->
+        <!--<a href="/Trango/about/">About</a><br />-->
+        <!--<a href="/Trango/add_category/">Add a New Category</a><br />-->
+        <!--{% if user.is_authenticated %}-->
+        <!--<a href="/Trango/restricted/">Restricted Page</a><br />-->
+        <!--<a href="/Trango/logout/">Logout</a><br />-->
+        <!--{% else %}-->
+        <!--<a href="/Trango/register/">Register Here</a><br />-->
+        <!--<a href="/Trango/login/">Login</a><br />-->
+        <!--{% endif %}-->
+        <!--<img src="{% static "images/img0.jpeg" %}" alt="Picture of Rango" height="480" width="640" />-->
+    <!--</body>-->
+
+<!--</html>-->
